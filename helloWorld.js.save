@@ -1,0 +1,38 @@
+var express = require('express')
+var app = express()
+var fs = require('fs')
+
+// set view engine to pug.
+app.set('views', '')
+
+//create route to render index.pug file.
+app.get('/', function(res, req){
+    res.render('index', {title: 'Hey!', message: 'Hello There!'})
+})
+
+
+//prints hello world.
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+})
+
+// get request that retrieves files on the vm.
+app.get('/files', function(req,res) {
+   fs.readdir('/', function(err,files){
+       console.log(files);
+       res.send(files);
+   })
+})
+
+// get /proc files.
+app.get('/sysinfo', function(req,res) {
+    fs.readFile('/proc/cpuinfo','utf8', function(err,data) {
+       if (err) throw err;
+        console.log(data);
+        res.send(data);
+    })
+})
+
+app.listen(8080, function () {
+  console.log('Example app listening on port 8080!')
+})
