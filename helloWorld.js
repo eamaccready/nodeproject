@@ -40,6 +40,8 @@ app.get('/sysinfo', function(req,res) {
         fs.readFile('/proc/cpuinfo','utf8', function(err,data) {
         if (err) throw err;
         var data2 = data.split("\n");
+        data2 =  data2.slice(1,26);
+        console.log(data2.length);
         console.log(data2);
         res.render('sys', {title:'CPUinfo', message: data2});
     })
