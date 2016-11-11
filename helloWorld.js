@@ -41,7 +41,7 @@ app.get('/sysinfo', function(req,res) {
         if (err) throw err;
         var data2 = data.split("\n");
         console.log(data2);
-        res.render('files', {title:'CPUinfo', message: data});
+        res.render('sys', {title:'CPUinfo', message: data2});
     })
 })
 
